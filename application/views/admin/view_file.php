@@ -1,4 +1,6 @@
 <?php
+set_time_limit(0);
+ini_set('memory_limit', '-1');
 $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
 $pdf->SetTitle('Profil -'.$siswa->namaLengkap.'.pdf');
 $pdf->SetHeaderMargin(30);
@@ -27,7 +29,7 @@ $html = '<style></style>
 <ol>
    <li>Nama lengkap :&nbsp; <b>'.$siswa->namaLengkap.'</b></li>
    <li>Nama panggilan : <b>'.$siswa->namaPanggilan.'</b></li>
-   
+
    <li>Jenis kelamin :  <b>'.$siswa->jenisKelamin.'</b></li>
    <li>Golongan Darah :  <b>'.$siswa->golonganDarah.'</b></li>
    <li>Anak ke :  <b>'.$siswa->anakKe.'</b>. dari  <b>'.$siswa->dariKe.'</b> bersaudara</li>

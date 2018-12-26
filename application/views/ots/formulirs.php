@@ -546,6 +546,52 @@
                               <img src="<?=$siswa->result()[0]->pasFoto?>" style="max-height: 200px;" class="img-responsive" alt="Cinque Terre">
                            </div>
                            <?php
+                              }else{echo ' <div class="col-sm-4" ></div>';}
+                              if ($siswa->result()[0]->aktaKelahiran != NULL) {
+                              ?>
+                           <!-- <div class="col-sm-4" ><a href="btn btn-warning btn-block" href="<?=base_url()?>assets/upload/aktaKelahiran/<?=$siswa->result()[0]->aktaKelahiran?>">Periksa</a>
+                              </div> -->
+                           <div class="col-sm-4" >
+                              <img src="<?=$siswa->result()[0]->aktaKelahiran?>" style="max-height: 200px;" class="img-responsive" alt="Cinque Terre">
+                           </div>
+                           <?php
+                              }else{echo ' <div class="col-sm-4" ></div>';}
+                              if ($siswa->result()[0]->kartuKeluarga != NULL) {
+                              ?>
+                           <!-- <div class="col-sm-4" ><a href="btn btn-warning btn-block" href="<?=base_url()?>assets/upload/kartuKeluarga/<?=$siswa->result()[0]->kartuKeluarga ?>">Periksa</a>
+                              </div> -->
+                           <div class="col-sm-4" >
+                              <img src="<?=$siswa->result()[0]->kartuKeluarga?>" style="max-height: 200px;" class="img-responsive" alt="Cinque Terre">
+                           </div>
+                           <?php
+                              }else{echo ' <div class="col-sm-4" ></div>';}
+                              ?>
+                        </div>
+                        <div class="row">
+                           <div class="form-group col-sm-4">
+                              <label>Unggah Pasfoto berukuran 3x4. Format Berkas/file .JPG. maksimal 1 Mb (Megabyte)</label>
+                              <input type="hidden" name="pasFoto_b" value="<?=$siswa->result()[0]->pasFoto?>">
+                              <input type="file" name="pasFoto" id="pasFoto" onchange="uploads('pasFoto')" class="form-control" >
+                           </div>
+                           <div class="form-group col-sm-4">
+                              <label>Unggah Akta Kelahiran. Format Berkas/file .JPG. maksimal 1 Mb (Megabyte)</label>
+                              <input type="hidden" name="aktaKelahiran_b" value="<?=$siswa->result()[0]->aktaKelahiran?>">
+                              <input type="file" name="aktaKelahiran" id="aktaKelahiran" onchange="uploads('pasFoto')" class="form-control">
+                           </div>
+                           <div class="form-group col-sm-4">
+                              <label>Unggah Kartu Keluarga. Format Berkas/file .JPG. maksimal 1 Mb (Megabyte)</label>
+                              <input type="hidden" name="kartuKeluarga_b" value="<?=$siswa->result()[0]->kartuKeluarga?>">
+                              <input type="file" name="kartuKeluarga" id="kartuKeluarga" onchange="uploads('pasFoto')" class="form-control">
+                           </div>
+                        </div>
+                        <!-- <div class="row">
+                           <?php
+                              if ($siswa->result()[0]->pasFoto != NULL) {
+                              ?>
+                           <div class="col-sm-4" >
+                              <img src="<?=$siswa->result()[0]->pasFoto?>" style="max-height: 200px;" class="img-responsive" alt="Cinque Terre">
+                           </div>
+                           <?php
                               }
                               if ($siswa->result()[0]->aktaKelahiran != NULL) {
                               ?>
@@ -572,7 +618,7 @@
                               <label>Unggah Kartu Keluarga. Format Berkas/file .JPG. maksimal 1 Mb (Megabyte)</label>
                               <input type="file" name="kartuKeluarga" id="kartuKeluarga" onchange="uploads('pasFoto')" class="form-control">
                            </div>
-                        </div>
+                        </div> -->
                         <div class="form-group" data-step="5" data-intro="Tahap terakhir, Tekan tombol Daftar untuk mengirim data pendaftaran" data-position='right'>
                            <button type="submit" onkeypress="return isNumber(event)" class="btn btn-lg btn-primary btn-block">Simpan</button>
                         </div>

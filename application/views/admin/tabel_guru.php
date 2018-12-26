@@ -15,14 +15,14 @@
 
 	<!-- Main content -->
 	<section class="content">
-	   <?php 
+	   <?php
      if ($this->session->flashdata('info')) {
       echo $this->session->flashdata('info');
      }
      ?>
 		<div class="row">
 
-       <div class="col-sm-9">
+       <div class="col-sm-12">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Data Guru</h3>
@@ -51,7 +51,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
+                    <?php
                     $i=1;
                     foreach ($guru->result() as $key) {
                       ?>
@@ -84,27 +84,7 @@
             </div>
             <!-- /.box-body -->
           </div>
-        </div> 
-        <div class="col-sm-3">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Tentang Aplikasi</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="toggle-expand-btn btn btn-box-tool btn-sm">
-                  <i class="fa fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                  <i class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>  
+        </div>
     </div>
 		<!-- /.box -->
 
@@ -136,7 +116,7 @@
       <div class="modal-body">
         <!-- <div class="container"> -->
             <form action="<?= base_url();?>Dashboard/guru/add" method="POST">
-               
+
                 <div class="form-group">
                     <label>Nama Lengkap</label>
                     <input type="text" name="namaLengkap" class="form-control" required="true">
@@ -145,12 +125,21 @@
                     <label>Nomor Telepon Seluler</label>
                     <input type="text" name="nomorSeluler" class="form-control" required="true">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label>Status</label>
                     <select class="form-control" name="status">
                       <option value="user">User</option>
                       <option value="admin">Admin</option>
                     </select>
+                </div>
+								<div class="form-group col-sm-6">
+									<label>Tugas</label>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="1" name="isNotulen">Notulensi</label>
+                  </div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="1" name="isInterviewer">Pewawancara</label>
+									</div>
                 </div>
                 <div class="form-group">
                     <label>Alamat Email</label>
@@ -160,16 +149,15 @@
                     <label>Tanggal Lahir</label>
                     <input type="text" name="tanggalLahir" class="form-control" required="true">
                 </div>
-                <div class="form-group col-sm-6">
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="1" name="isNotulen">Notulensi</label>
-                  </div>
+								<div class="form-group">
+                    <label>Password</label>
+                    <input type="text" name="tanggalLahir" class="form-control" required="true">
                 </div>
-                <div class="form-group col-sm-6">
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="1" name="isInterviewer">Pewawancara</label>
-                  </div>
+								<div class="form-group">
+                    <label>Konfirmasi Password</label>
+                    <input type="text" name="tanggalLahir" class="form-control" required="true">
                 </div>
+
                 <input type="submit" class="btn btn-primary">
             </form>
         <!-- </div> -->

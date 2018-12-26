@@ -5,8 +5,8 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Dashboard Administrator
-			<small>Dashboard</small>
+			Halaman Pendaftar Taman Kanak-Kanak
+			<!-- <small>Dashboard</small> -->
 		</h1>
 		<ol class="breadcrumb">
 			<li class="active"><a href="javascript:void(0);"><i class="fa fa-home"></i> Dashboard</a></li>
@@ -15,7 +15,7 @@
 
 	<!-- Main content -->
 	<section class="content">
-	
+
 		<div class="row">
        <div class="col-sm-12">
           <div class="box">
@@ -46,7 +46,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Tingkat A</a></li>
               <li><a href="#tab_2" data-toggle="tab">Tingkat B</a></li>
-              
+
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
@@ -64,11 +64,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
+                    <?php
                     $i=1;
                     foreach ($siswa->result() as $key) {
                       if ($key->tingkat == 'A') {
-                      
+
                       ?>
                       <tr>
                         <td>
@@ -81,7 +81,7 @@
                         <td><?=$key->tanggalLahir?></td>
                         <td><?=$key->agama?></td>
                         <th class="text-primary"><?=$key->statusPendaftaran?>
-                          <?php 
+                          <?php
                           if ($key->verifikasiBerkas == 1) {
                             echo "- Lolos";
                           }elseif ($key->verifikasiBerkas == 2) {
@@ -90,9 +90,18 @@
                           ?>
                         </th>
                         <td>
-                          <a href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>" class="btn btn-default">Detail</a>
-                          <a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="blank" class="btn btn-warning">Invoice</a>
-                        </td>
+													<div class="btn-group">
+														<a type="button" class="btn btn-sm btn-default" href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>">Detail</a>
+														<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+															<span class="caret"></span>
+															<span class="sr-only">Toggle Dropdown</span>
+														</button>
+														<ul class="dropdown-menu" role="menu">
+															<li><a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="new">Invoice</a></li>
+															<li><a href="<?=base_url()?>Dashboard/siswa/draft/<?=$key->id?>" target="new">Profil</a></li>
+														</ul>
+													</div>
+												</td>
                       </tr>
                       <?php
                       $i++;
@@ -105,7 +114,7 @@
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
                 <table class="table table-hover" id="table1">
-                  <thead>
+									<thead>
                     <tr>
                       <th>No.</th>
                       <th>Nama Lengkap</th>
@@ -118,11 +127,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
+                    <?php
                     $i=1;
                     foreach ($siswa->result() as $key) {
                       if ($key->tingkat == 'B') {
-                      
+
                       ?>
                       <tr>
                         <td>
@@ -136,9 +145,18 @@
                         <td><?=$key->agama?></td>
                         <th class="text-primary"><?=$key->statusPendaftaran?></th>
                         <td>
-                          <a href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>" class="btn btn-default">Detail</a>
-                         <a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="blank" class="btn btn-warning">Invoice</a>
-                        </td>
+													<div class="btn-group">
+														<a type="button" class="btn btn-sm btn-default" href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>">Detail</a>
+														<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+															<span class="caret"></span>
+															<span class="sr-only">Toggle Dropdown</span>
+														</button>
+														<ul class="dropdown-menu" role="menu">
+															<li><a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="new">Invoice</a></li>
+															<li><a href="<?=base_url()?>Dashboard/siswa/draft/<?=$key->id?>" target="new">Profil</a></li>
+														</ul>
+													</div>
+												</td>
                       </tr>
                       <?php
                       $i++;
@@ -152,11 +170,11 @@
             </div>
             <!-- /.tab-content -->
           </div>
-                
+
             </div>
             <!-- /.box-body -->
           </div>
-        </div> 
+        </div>
     </div>
 		<!-- /.box -->
 
@@ -178,7 +196,7 @@
         if (!id_template.includes(val)) {
           id_template.push(val);
         }else{
-          id_template.splice( id_template.indexOf(val), 1 ); 
+          id_template.splice( id_template.indexOf(val), 1 );
         }
         // $('#checkall_template').prop('checked',false);
         console.log('satuan : ',id_template);
@@ -191,7 +209,7 @@
         }else{
           alert('Harap pilih data siswa yang Invoice nya ingin dicetak.');
         }
-       
+
       });
     });
   $('#table').dataTable({

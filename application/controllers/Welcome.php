@@ -278,50 +278,50 @@ class Welcome extends CI_Controller {
 						$config['upload_path'] = './assets/upload/pasFoto/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['pasFoto']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('pasFoto')){
 		                    $uploadData = $this->upload->data();
 		                     $filefoto = base_url().'assets/upload/pasFoto/'.$uploadData['file_name'];
 		                }else{
 		                    $filefoto = NULL;
 		                }
-					}else{$filefoto = NULL;}
+					}else{$filefoto = $this->input->post('pasFoto_b');}
 					if ($_FILES['kartuKeluarga']['size'] > 0) {
 						$config['upload_path'] = './assets/upload/kartuKeluarga/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['kartuKeluarga']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('kartuKeluarga')){
 		                    $uploadData = $this->upload->data();
 		                     $kartuKeluarga = base_url().'assets/upload/kartuKeluarga/'.$uploadData['file_name'];
 		                }else{
 		                    $kartuKeluarga = NULL;
 		                }
-					}else{$kartuKeluarga = NULL;}
+					}else{$kartuKeluarga =  $this->input->post('kartuKeluarga_b');}
 					if ($_FILES['aktaKelahiran']['size'] > 0) {
 						$config['upload_path'] = './assets/upload/aktaKelahiran/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['aktaKelahiran']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('aktaKelahiran')){
 		                    $uploadData = $this->upload->data();
 		                     $aktaKelahiran = base_url().'assets/upload/aktaKelahiran/'.$uploadData['file_name'];
 		                }else{
 		                    $aktaKelahiran = NULL;
 		                }
-		                }else{$aktaKelahiran = NULL;}
+									}else{$aktaKelahiran= $this->input->post('aktaKelahiran_b');}
 					$data['pasFoto'] = $filefoto;
 					$data['kartuKeluarga'] = $kartuKeluarga;
 					$data['aktaKelahiran'] = $aktaKelahiran;
@@ -398,7 +398,7 @@ class Welcome extends CI_Controller {
 				'jenisTransportasi' => $this->input->post('jenisTransportasi'),
 				'pengantarSekolah' => $this->input->post('pengantarSekolah'),
 				'orangTerdekat' => json_encode($this->input->post('orangTerdekat')),
-				
+
 				);
 				foreach ($this->input->post('namaSaudara') as $key => $value) {
 					$dataKeluarga['namaSaudara'] = $value;
@@ -418,7 +418,7 @@ class Welcome extends CI_Controller {
 			case 'tambahan':
 				$data = array(
 					'pertanyaan1' => $this->input->post('pertanyaan1'),
-					'pertanyaan2' => $this->input->post('pertanyaan2'), 
+					'pertanyaan2' => $this->input->post('pertanyaan2'),
 					'pertanyaan3' => $this->input->post('pertanyaan3'),
 					'pertanyaan4' => $this->input->post('pertanyaan4'),
 					'pertanyaan5' => $this->input->post('pertanyaan5'),
@@ -428,7 +428,7 @@ class Welcome extends CI_Controller {
 					'pertanyaan9' => $this->input->post('pertanyaan9'),
 					'pertanyaan10' => $this->input->post('pertanyaan10'),
 					'pertanyaan11' => $this->input->post('pertanyaan11'),
-					'pertanyaan12' => $this->input->post('pertanyaan12'), 
+					'pertanyaan12' => $this->input->post('pertanyaan12'),
 					'pertanyaan13' => $this->input->post('pertanyaan13'),
 					'pertanyaan14' => $this->input->post('pertanyaan14'),
 					'pertanyaan15' => $this->input->post('pertanyaan15'),
@@ -438,7 +438,7 @@ class Welcome extends CI_Controller {
 					'pertanyaan19' => $this->input->post('pertanyaan19'),
 					'pertanyaan20' => $this->input->post('pertanyaan20'),
 					'pertanyaan21' => $this->input->post('pertanyaan21'),
-					'pertanyaan22' => $this->input->post('pertanyaan22'), 
+					'pertanyaan22' => $this->input->post('pertanyaan22'),
 					'pertanyaan23' => $this->input->post('pertanyaan23'),
 					'pertanyaan24' => $this->input->post('pertanyaan24'),
 					'pertanyaan25' => $this->input->post('pertanyaan25'),
@@ -467,7 +467,7 @@ class Welcome extends CI_Controller {
 	{
 		$data = $this->input->post();
 		$hsl = $this->Siswa_model->getWhere($data)->num_rows();
-		
+
 		if ($data['jenjangPendidikan'] == 'KB') {
 			if ($hsl >= 18) {$result = array('status' => 'denied');}
 			else{$result = array('status' => 'allowed');}
@@ -512,7 +512,7 @@ class Welcome extends CI_Controller {
 		}else{
 			$info ='<div class="alert alert-danger alert-dismissible"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Maaf</strong> Kode Aktivasi yang anda masukan salah. Perhatikan dengan baik dan tulis kode aktivasi dengan benar. </div>';
 			$this->session->set_flashdata('info',$info);
-			
+
 		}
 		redirect('Welcome/ots','refresh');
 	}
@@ -528,7 +528,7 @@ class Welcome extends CI_Controller {
 			}else{
 				$info ='<div class="alert alert-danger alert-dismissible"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Maaf!</strong> Kombinasi nama anak dengan password yang anda masukan salah. Silakan tulis nama panggilan dan password dengan benar. </div>';
 				$this->session->set_flashdata('info',$info);
-				redirect('Welcome/login','refresh');	
+				redirect('Welcome/login','refresh');
 			}
 		}else{
 			$this->load->view('ots/login');
@@ -536,21 +536,21 @@ class Welcome extends CI_Controller {
 	}
 	public function sysCode($value='')
 	{
-		$chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ023456789"; 
-	    srand((double)microtime()*1000000); 
-	    $i = 0; 
-	    $pass = '' ; 
+		$chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ023456789";
+	    srand((double)microtime()*1000000);
+	    $i = 0;
+	    $pass = '' ;
 
-	    while ($i <= 7) { 
-	        $num = rand() % 33; 
-	        $tmp = substr($chars, $num, 1); 
-	        $pass = $pass . $tmp; 
-	        $i++; 
-	    } 
+	    while ($i <= 7) {
+	        $num = rand() % 33;
+	        $tmp = substr($chars, $num, 1);
+	        $pass = $pass . $tmp;
+	        $i++;
+	    }
 
-	    return $pass; 
+	    return $pass;
 	}
-	
+
 	public function kirimEm($email){
 	    $where = array('ayah_email'=>$email);
 	    $res = $this->Siswa_model->getWhere($where);
@@ -558,7 +558,7 @@ class Welcome extends CI_Controller {
 	        $this->sendmail($res->result_array()[0]);
 	    }else{echo "Not Found";}
 	}
-	
+
 	public function sendmail($object)
 	{
 		//SMTP & mail configuration

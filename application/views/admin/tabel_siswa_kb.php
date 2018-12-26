@@ -3,8 +3,8 @@
    <!-- Content Header (Page header) -->
    <section class="content-header">
       <h1>
-         Dashboard Administrator
-         <small>Dashboard</small>
+         Halaman Pendaftar Kelompok Bermain
+         <!-- <small>Dashboard</small> -->
       </h1>
       <ol class="breadcrumb">
          <li class="active"><a href="javascript:void(0);"><i class="fa fa-home"></i> Dashboard</a></li>
@@ -52,7 +52,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <?php 
+                  <?php
                      $i=1;
                      foreach ($siswa->result() as $key) {
                        ?>
@@ -67,7 +67,7 @@
                      <td><?=$key->tanggalLahir?></td>
                      <td><?=$key->agama?></td>
                      <th class="text-primary"><?=$key->statusPendaftaran?>
-                          <?php 
+                          <?php
                           if ($key->verifikasiBerkas == 1) {
                             echo "- Lolos";
                           }elseif ($key->verifikasiBerkas == 2) {
@@ -76,9 +76,18 @@
                           ?>
                         </th>
                      <td>
-                        <a href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>" class="btn btn-default">Detail</a>
-                       <a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="blank" class="btn btn-warning">Invoice</a>
-                     </td>
+                       <div class="btn-group">
+                         <a type="button" class="btn btn-sm btn-default" href="<?=base_url()?>Dashboard/siswa/detil/<?=$key->id?>">Detail</a>
+                         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                           <span class="caret"></span>
+                           <span class="sr-only">Toggle Dropdown</span>
+                         </button>
+                         <ul class="dropdown-menu" role="menu">
+                           <li><a href="<?=base_url()?>Dashboard/siswa/invoice/<?=$key->id?>" target="new">Invoice</a></li>
+                           <li><a href="<?=base_url()?>Dashboard/siswa/draft/<?=$key->id?>" target="new">Profil</a></li>
+                         </ul>
+                       </div>
+                    </td>
                   </tr>
                   <?php
                      $i++;
@@ -106,7 +115,7 @@
         if (!id_template.includes(val)) {
           id_template.push(val);
         }else{
-          id_template.splice( id_template.indexOf(val), 1 ); 
+          id_template.splice( id_template.indexOf(val), 1 );
         }
         // $('#checkall_template').prop('checked',false);
         console.log('satuan : ',id_template);
@@ -119,7 +128,7 @@
         }else{
           alert('Harap pilih data siswa yang Invoice nya ingin dicetak.');
         }
-       
+
       });
     });
     $('#table').dataTable({

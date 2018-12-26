@@ -32,9 +32,28 @@ class Dashboard extends CI_Controller {
 	}
 	public function index($value='')
 	{
+		$siswa = $this->Siswa_model->getAll();
+		$seri = [];$sd1=0;$sd2=0;$sd4=0;$tka=0;$tkb=0;
+		$seri[] = array('name'=>'Sekolah Dasar','y'=>$this->Siswa_model->getWhere(array('jenjangPendidikan'=>'SD'))->num_rows(),'drilldown'=>'SD');
+		$seri[] = array('name'=>'Taman Kanak-kanak','y'=>$this->Siswa_model->getWhere(array('jenjangPendidikan'=>'TK'))->num_rows(),'drilldown'=>'TK');
+		$seri[] = array('name'=>'Kelompok Bermain','y'=>$this->Siswa_model->getWhere(array('jenjangPendidikan'=>'KB'))->num_rows(),'drilldown'=>NULL);
+		foreach ($siswa->result() as $key) {
+			switch ($key->tingkat) {
+				case '1':$sd1++;break;
+				case '2':$sd2++;break;
+				case '4':$sd4++;break;
+				case 'A':$tka++;break;
+				default:$tkb++;break;
+			}
+		}
+		$drilldown[] = array('name'=>'Sekolah Dasar','id'=>'SD','data'=>[['SD 1',$sd1],['SD 2',$sd2],['SD 4',$sd4]]);
+		$drilldown[] = array('name'=>'Taman Kanak-Kanak','id'=>'TK','data'=>[['TK A',$tka],['TK B',$tkb]]);
+		$series[] = array('name' =>"Jenjang Pendaftaran" ,'colorByPoint'=>TRUE,"data"=>$seri );
+		$data['series'] = $series;
+		$data['drilldown'] = $drilldown;
 		$this->load->view('admin/header_s');
-					$this->load->view('admin/index_s');
-					$this->load->view('admin/footer_s');
+		$this->load->view('admin/index_s',$data);
+		$this->load->view('admin/footer_s');
 	}
 	public function out($value='')
 	{
@@ -157,11 +176,11 @@ class Dashboard extends CI_Controller {
 						$config['upload_path'] = './assets/upload/pasFoto/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['pasFoto']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('pasFoto')){
 		                    $uploadData = $this->upload->data();
 		                     $filefoto = base_url().'assets/upload/pasFoto/'.$uploadData['file_name'];
@@ -173,11 +192,11 @@ class Dashboard extends CI_Controller {
 						$config['upload_path'] = './assets/upload/kartuKeluarga/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['kartuKeluarga']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('kartuKeluarga')){
 		                    $uploadData = $this->upload->data();
 		                     $kartuKeluarga = base_url().'assets/upload/kartuKeluarga/'.$uploadData['file_name'];
@@ -190,11 +209,11 @@ class Dashboard extends CI_Controller {
 						$config['upload_path'] = './assets/upload/aktaKelahiran/';
 		                $config['allowed_types'] = 'jpg|jpeg';
 		                $config['file_name'] = $_FILES['aktaKelahiran']['name'];
-		                
+
 		                //Load upload library and initialize configuration
 		                $this->load->library('upload',$config);
 		                $this->upload->initialize($config);
-		                
+
 		                if($this->upload->do_upload('aktaKelahiran')){
 		                    $uploadData = $this->upload->data();
 		                     $aktaKelahiran = base_url().'assets/upload/aktaKelahiran/'.$uploadData['file_name'];
@@ -288,7 +307,7 @@ class Dashboard extends CI_Controller {
 				'jenisTransportasi' => $this->input->post('jenisTransportasi'),
 				'pengantarSekolah' => $this->input->post('pengantarSekolah'),
 				'orangTerdekat' => json_encode($this->input->post('orangTerdekat')),
-				
+
 				);
 				foreach ($this->input->post('namaSaudara') as $key => $value) {
 					$dataKeluarga['namaSaudara'] = $value;
@@ -308,7 +327,7 @@ class Dashboard extends CI_Controller {
 			case 'tambahan':
 				$data = array(
 					'pertanyaan1' => $this->input->post('pertanyaan1'),
-					'pertanyaan2' => $this->input->post('pertanyaan2'), 
+					'pertanyaan2' => $this->input->post('pertanyaan2'),
 					'pertanyaan3' => $this->input->post('pertanyaan3'),
 					'pertanyaan4' => $this->input->post('pertanyaan4'),
 					'pertanyaan5' => $this->input->post('pertanyaan5'),
@@ -318,7 +337,7 @@ class Dashboard extends CI_Controller {
 					'pertanyaan9' => $this->input->post('pertanyaan9'),
 					'pertanyaan10' => $this->input->post('pertanyaan10'),
 					'pertanyaan11' => $this->input->post('pertanyaan11'),
-					'pertanyaan12' => $this->input->post('pertanyaan12'), 
+					'pertanyaan12' => $this->input->post('pertanyaan12'),
 					'pertanyaan13' => $this->input->post('pertanyaan13'),
 					'pertanyaan14' => $this->input->post('pertanyaan14'),
 					'pertanyaan15' => $this->input->post('pertanyaan15'),
@@ -328,7 +347,7 @@ class Dashboard extends CI_Controller {
 					'pertanyaan19' => $this->input->post('pertanyaan19'),
 					'pertanyaan20' => $this->input->post('pertanyaan20'),
 					'pertanyaan21' => $this->input->post('pertanyaan21'),
-					'pertanyaan22' => $this->input->post('pertanyaan22'), 
+					'pertanyaan22' => $this->input->post('pertanyaan22'),
 					'pertanyaan23' => $this->input->post('pertanyaan23'),
 					'pertanyaan24' => $this->input->post('pertanyaan24'),
 					'pertanyaan25' => $this->input->post('pertanyaan25'),
@@ -388,7 +407,7 @@ class Dashboard extends CI_Controller {
 				}else{
 					$data['siswa'] = $this->Siswa_model->getWhere(array('jenjangPendidikan'=>$case));
 				}
-				
+
 				$this->load->view('admin/header_s');
 				switch ($case) {
 					case 'KB':
@@ -404,7 +423,7 @@ class Dashboard extends CI_Controller {
 						$this->load->view('admin/tabel_siswa_all',$data);
 						break;
 				}
-				
+
 				$this->load->view('admin/footer_s');
 				break;
 		}
@@ -422,7 +441,7 @@ class Dashboard extends CI_Controller {
 						'password'=>md5(str_replace('/', '', $this->input->post('tanggalLahir'))),
 						'status'=>$this->input->post('status'),
 						'isInterviewer'=> ($this->input->post('isInterviewer') == 1? 1:0),
-						'isNotulen'=> ($this->input->post('isNotulen') == 1? 1:0) 
+						'isNotulen'=> ($this->input->post('isNotulen') == 1? 1:0)
 					);
 					// echo "<br/>".$this->input->post('isInterviewer');
 					// print_r($data);die();
@@ -480,7 +499,7 @@ class Dashboard extends CI_Controller {
 	}
 	public function Export($value='',$spec=''){
 		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
-    
+
 	    // Panggil class PHPExcel nya
 	    $excel = new PHPExcel();
 	    // echo "sdsa";
@@ -548,7 +567,7 @@ class Dashboard extends CI_Controller {
 	    if ($value != '') {
 		    $excel->getActiveSheet()->getStyle('L1')->applyFromArray($style_col);
 		    $excel->getActiveSheet()->getStyle('M1')->applyFromArray($style_col);
-		}	
+		}
 
 	  	if ($value == '') {
 	  		$result = $this->Siswa_model->getAll();
@@ -577,7 +596,7 @@ class Dashboard extends CI_Controller {
 		      if ($value != '') {
 		      	$excel->setActiveSheetIndex(0)->setCellValue('L'.$numrow, $data->jenjangPendidikan);
 		      	$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $data->tingkat);
-		      }		      
+		      }
 
 		      $no++; // Tambah 1 setiap kali looping
 		      $numrow++; // Tambah 1 setiap kali looping
@@ -590,7 +609,7 @@ class Dashboard extends CI_Controller {
 		    // Set judul file excel nya
 		     $excel->setActiveSheetIndex(0);
 		    $excel->getActiveSheet(0)->setTitle("Siswa ".$value);
-		   
+
 		    // Proses file excel
 		    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		    header('Content-Disposition: attachment; filename="Data Siswa.xlsx"'); // Set nama file excel nya

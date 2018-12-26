@@ -95,6 +95,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Datepicker -->
 <script src="<?= base_url()?>assets/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -118,9 +120,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="wrapper">
 	<header class="main-header">
 		<!-- Logo -->
-			
+
 		<a href="/" class="logo" style="background-color: white;">
-			
+
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b><img alt="Brand" src="<?=base_url()?>assets/img/logo-sai-lead.png" width="50"></span>
         <!-- logo for regular state and mobile devices -->

@@ -7,7 +7,7 @@
          <small>Detail Siswa</small>
       </h1>
       <ol class="breadcrumb">
-         <li class="active"><a href="javascript:void(0);"><i class="fa fa-home"></i> Dashboard</a></li>
+         <li class="active"><a href="<?=base_url()?>Dashboard/siswa"><i class="fa fa-arrow-left"></i> Kembali</a></li>
       </ol>
    </section>
    <style type="text/css">
@@ -67,7 +67,7 @@
                </ul>
                <div class="tab-content">
                   <div class="tab-pane" id="tab_6">
-                     Ongoing 
+                     Ongoing
                   </div>
                   <div class="tab-pane active" id="tab_0">
                      <form id="f_tab_0" method="POST" action="<?=base_url()?>Dashboard/save/pendaftaran/<?=$this->uri->segment(4);?>" enctype="multipart/form-data">
@@ -94,7 +94,7 @@
                         </div>
                         <h3>Berkas</h3>
                         <div class="row">
-                           <?php 
+                           <?php
                               if ($siswa->result()[0]->pasFoto != NULL) {
                               ?>
                            <div class="col-sm-4" >
@@ -493,7 +493,7 @@
                               </div>
                               <div class="form-group col-sm-3">
                                  <label>Tanggal Lahir</label>
-                                 <?php 
+                                 <?php
                                     if($siswa->result()[0]->ayah_tanggalLahir != NULL){
                                        ?><input type="text" name="wali_tanggalLahir" value="<?=date('d/m/Y',strtotime($siswa->result()[0]->wali_tanggalLahir))?>" id="wali_tanggalLahir" class="form-control datepicker" required><?php
                                     }else{
@@ -621,7 +621,7 @@
                            <h3 class="box-title">Panduan Pengisian</h3>
                            <div class="box-tools">
                               <a class="btn btn-box-tool" onclick="edit('f_tab_1')" data-toggle="tooltip" title="Edit">Edit</a>
-                                 
+
                               <!-- This will cause the box to be removed when clicked -->
                               <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                               <!-- This will cause the box to collapse when clicked -->
@@ -737,7 +737,7 @@
                            <h3 class="box-title">Panduan Pengisian</h3>
                            <div class="box-tools">
                               <a class="btn btn-box-tool" onclick="edit('f_tab_2')" data-toggle="tooltip" title="Edit">Edit</a>
-                                 
+
                               <!-- This will cause the box to be removed when clicked -->
                               <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                               <!-- This will cause the box to collapse when clicked -->
@@ -795,22 +795,22 @@
                               </div>
                            </li>
                            <li>
-                              Kelahiran 
+                              Kelahiran
                               <div class="row">
                                  <div class="form-group col-sm-4">
                                     <label>Usia Kelahiran (dalam pekan)</label>
                                     <div class="input-group">
-                                       <input type="number"  name="usiaKelahiran" onkeypress="return isNumber(event)" placeholder="usia kelahiran" class="form-control " id="usiaKelahiran" required> 
+                                       <input type="number"  name="usiaKelahiran" onkeypress="return isNumber(event)" placeholder="usia kelahiran" class="form-control " id="usiaKelahiran" required>
                                        <div class="input-group-addon">Pekan</div>
                                     </div>
                                  </div>
                                  <!-- <div class="form-group col-sm-4">
                                     <label>Usia Kelahiran (Hari)</label>
-                                    <input type="text" name="" class="form-control "> 
+                                    <input type="text" name="" class="form-control ">
                                     </div> -->
                                  <div class="form-group col-sm-4">
                                     <label>Apakah ada kasus khusus penyebab kelahiran?</label>
-                                    <input type="text" name="kasusKhusus" class="form-control " id="kasusKhusus"> 
+                                    <input type="text" name="kasusKhusus" class="form-control " id="kasusKhusus">
                                  </div>
                                  <!-- </div>
                                     <div class="row"> -->
@@ -857,7 +857,7 @@
                                        <div class="input-group-addon">Bulan</div>
                                     </div>
                                  </div>
-                                 
+
                                  <div class="form-group col-sm-2">
                                     <label>Mengerti Diperintah</label>
                                     <div class="input-group">
@@ -868,7 +868,7 @@
                               </div>
                            </li>
                            <li>
-                              Karakter Anak 
+                              Karakter Anak
                               <div class="row">
                                  <div class="form-group col-sm-4">
                                     <label>Tuliskan Karakter Anak</label>
@@ -906,7 +906,7 @@
                            <h3 class="box-title">Panduan Pengisian</h3>
                            <div class="box-tools">
                               <a class="btn btn-box-tool" onclick="edit('f_tab_4')" data-toggle="tooltip" title="Edit">Edit</a>
-                                 
+
                               <!-- This will cause the box to be removed when clicked -->
                               <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                               <!-- This will cause the box to collapse when clicked -->
@@ -1332,7 +1332,7 @@
                            <h3 class="box-title">Panduan Pengisian</h3>
                            <div class="box-tools">
                               <a class="btn btn-box-tool" onclick="edit('f_tab_5')" data-toggle="tooltip" title="Edit">Edit</a>
-                                 
+
                               <!-- This will cause the box to be removed when clicked -->
                               <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                               <!-- This will cause the box to collapse when clicked -->
@@ -1500,7 +1500,7 @@
                            <h3 class="box-title">Panduan Pengisian</h3>
                            <div class="box-tools">
                               <a class="btn btn-box-tool" onclick="edit('f_tab_3')" data-toggle="tooltip" title="Edit">Edit</a>
-                                 
+
                               <!-- This will cause the box to be removed when clicked -->
                               <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                               <!-- This will cause the box to collapse when clicked -->
@@ -1636,7 +1636,7 @@
                         </div>
                         <hr/>
                         <div id="div_saudara">
-                           <?php 
+                           <?php
                               if (count(json_decode($siswa->result()[0]->dataKeluarga)) == 0) {
                               ?>
                            <div class="row">
@@ -1720,7 +1720,7 @@
 </div>
 <div class="modal fade" id="verifikasi" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="color: white;background-color: #EC6607">
@@ -1739,7 +1739,7 @@
           <a type="button" class="btn btn-danger" id="m_tidaklolos">Tidak Lolos</a>
         </div>
       </div>
-      
+
     </div>
   </div>
 <!-- /.content-wrapper -->
@@ -1755,8 +1755,8 @@
       $('#div_saudara').append(row);
     }
     function uploads(argument) {
-        var file_data = $('#'+argument).prop('files')[0]; 
-        // console.log(file_data);     
+        var file_data = $('#'+argument).prop('files')[0];
+        // console.log(file_data);
         if (argument == 'pasFoto') {
           if (file_data.type != 'image/jpeg') {
             alert('Unggah Pasfoto format berkas .jpg atau .jpeg');$('#'+argument).val('');return false;
@@ -1767,7 +1767,7 @@
             alert('Unggah Dokumen format berkas .jpg atau .jpeg');$('#'+argument).val('');return false;
           }
         }
-        
+
         if (file_data.size > (1024*1000*1)) {
           alert('Unggah Berkas dengan Ukuran Maksimal 1 MB');$('#'+argument).val('');return false;
         }
@@ -1786,7 +1786,7 @@
 </script>
 <script>
    /* jQueryKnob */
-   
+
    $('.knob').knob();
     $(document).ready(function() {
       // introJs().start();

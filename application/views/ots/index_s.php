@@ -15,7 +15,7 @@
 
 	<!-- Main content -->
 	<section class="content">
-	
+
 		<div class="row">
       <div class="col-sm-7">
       <div class="box box-warning">
@@ -39,8 +39,6 @@
                     <?= date('d-M-Y h:i:s',strtotime($this->session->userdata('ots')->created_at));?>
                   </span>
             </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
             <?php
             if ($formulir == TRUE) {
               ?>
@@ -90,7 +88,7 @@
           </ul>
         </div>
         <!-- /.box-body -->
-      </div>  
+      </div>
     </div>
     <div class="col-sm-5">
       <div class="box box-success">
@@ -108,11 +106,11 @@
         <!-- /.box-header -->
         <div class="box-body">
           <img src="<?=base_url()?>assets/upload/alur.jpeg" class="img-responsive">
-          
+
         </div>
         <!-- /.box-body -->
       </div>
-    </div>  
+    </div>
     </div>
 		<!-- /.box -->
 
